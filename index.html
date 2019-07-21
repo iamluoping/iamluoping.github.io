@@ -62,6 +62,215 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-STL-map学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/21/STL-map学习/" class="article-date">
+  <time datetime="2019-07-21T06:24:35.000Z" itemprop="datePublished">2019-07-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/21/STL-map学习/">STL-map学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##map与muiltimap</p>
+<p>###map<br>map中所有元素都会根据元素的键值key自动排序（<strong><em>红黑树</em></strong>），其中的每个元素都是&lt;key, value&gt;的键值对，map中不允许有键值相同的元素，因此map中元素的键值key不能修改。</p>
+<p>###muitimap<br>multimap中允许有键值相同的元素（<strong><em>红河树链表</em></strong>），每个树节点都是一个保存相同key的链表。  </p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;map&gt;
+using namespace std;
+
+struct Stu
+{
+    char *name;
+    int age;
+};
+struct Compare
+{
+    bool operator() (const Stu &amp;one, const Stu &amp;other)
+    {
+        return one.age &lt; other.age;
+    }
+};
+
+int main()
+{
+    Stu tmp[] = { {&quot;wang&quot;, 100}, {&quot;sing&quot;, 200}, {&quot;song&quot;, 150}};
+    map&lt;int, Stu&gt; m;
+
+    pair&lt;int, Stu&gt; pt(10, {&quot;goung&quot;, 800});
+    m.insert(pt);
+
+    m[1] = tmp[0];
+    m[4] = {&quot;sing&quot;, 50};
+    m[3] = tmp[2];
+
+    auto pfind = m.find(3);
+    if(pfind == m.end())
+        cout &lt;&lt; &quot;not find&quot; &lt;&lt; endl;
+    else
+        cout &lt;&lt; (*pfind).first &lt;&lt; &quot;  &quot; &lt;&lt; (*pfind).second.name &lt;&lt; &quot;  &quot; &lt;&lt; (*pfind).second.age &lt;&lt; endl &lt;&lt; endl;
+
+    for(auto &amp;i:m)
+        cout &lt;&lt; i.first &lt;&lt; &quot;  &quot; &lt;&lt; i.second.name &lt;&lt; &quot;  &quot; &lt;&lt; i.second.age &lt;&lt; endl ;
+
+    return 0;
+}</code></pre><p>##unordered_map_unordered_multimap<br>内部实现了一个哈希表，因此其元素的排列顺序是杂乱的，无序的</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/21/STL-map学习/" data-id="cjyclxvlr0000fsmhidq507oh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-boost库enable-shared-from-this类学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/20/boost库enable-shared-from-this类学习/" class="article-date">
+  <time datetime="2019-07-20T07:29:27.000Z" itemprop="datePublished">2019-07-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/20/boost库enable-shared-from-this类学习/">boost库enable_shared_from_this类学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>enable_shared_from_this是C++11新增一个模板类，如果一个类Test继承于该类，那么该类由shared_ptr管理的对象可以通过由enable_shared_from_this提供的shared_from_this函数在Test类成员函数中安全返回一个新的共享该对象的shared_ptr<test>对象。</test></p>
+<h2 id="使用场合"><a href="#使用场合" class="headerlink" title="使用场合"></a>使用场合</h2><p>当类A被share_ptr管理，且在类A的成员函数里需要把当前类对象作为参数传给其他函数时，就需要传递一个指向自身的share_ptr。</p>
+<h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><pre><code>template&lt;class T&gt; class enable_shared_from_this
+{
+    protected:
+
+        enable_shared_from_this()
+        {
+        }
+
+        enable_shared_from_this(enable_shared_from_this const &amp;)
+        {
+        }
+
+        enable_shared_from_this &amp; operator=(enable_shared_from_this const &amp;)
+        {
+            return *this;
+        }
+
+        ~enable_shared_from_this()
+        {
+        }
+
+    public:
+
+        shared_ptr&lt;T&gt; shared_from_this()
+        {
+            shared_ptr&lt;T&gt; p( weak_this_ );
+            BOOST_ASSERT( p.get() == this );
+            return p;
+        }
+
+        shared_ptr&lt;T const&gt; shared_from_this() const
+        {
+            shared_ptr&lt;T const&gt; p( weak_this_ );
+            BOOST_ASSERT( p.get() == this );
+            return p;
+        }
+
+    public: // actually private, but avoids compiler template friendship issues
+
+        // Note: invoked automatically by shared_ptr; do not call
+        template&lt;class X, class Y&gt; void _internal_accept_owner( shared_ptr&lt;X&gt; const * ppx, Y * py ) const
+        {
+            if( weak_this_.expired() )
+            {
+                weak_this_ = shared_ptr&lt;T&gt;( *ppx, py );
+            }
+        }
+
+    private:
+
+        mutable weak_ptr&lt;T&gt; weak_this_;
+};</code></pre><h2 id="使用场景分析"><a href="#使用场景分析" class="headerlink" title="使用场景分析"></a>使用场景分析</h2><h3 id="直接使用this指针"><a href="#直接使用this指针" class="headerlink" title="直接使用this指针"></a>直接使用this指针</h3><p>使用智能指针的初衷就是为了方便资源管理，如果在某些地方使用智能指针，某些地方使用原始指针，很容易破坏智能指针的语义，从而产生各种错误。</p>
+<h3 id="直接传递shared-ptr"><a href="#直接传递shared-ptr" class="headerlink" title="直接传递shared_ptr"></a>直接传递shared_ptr<this></this></h3><pre><code>#include &lt;memory&gt;
+
+#include &lt;iostream&gt;
+
+
+
+class Bad
+
+{
+
+public:
+
+    std::shared_ptr&lt;Bad&gt; getptr() {
+
+        return std::shared_ptr&lt;Bad&gt;(this);
+
+    }
+
+    ~Bad() { std::cout &lt;&lt; &quot;Bad::~Bad() called&quot; &lt;&lt; std::endl; }
+
+};
+
+
+
+int main()
+
+{
+
+    // 错误的示例，每个shared_ptr都认为自己是对象仅有的所有者
+
+    std::shared_ptr&lt;Bad&gt; bp1(new Bad());
+
+    std::shared_ptr&lt;Bad&gt; bp2 = bp1-&gt;getptr();
+
+    // 打印bp1和bp2的引用计数
+
+    std::cout &lt;&lt; &quot;bp1.use_count() = &quot; &lt;&lt; bp1.use_count() &lt;&lt; std::endl;
+
+    std::cout &lt;&lt; &quot;bp2.use_count() = &quot; &lt;&lt; bp2.use_count() &lt;&lt; std::endl;
+
+}  // Bad 对象将会被删除两次</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/20/boost库enable-shared-from-this类学习/" data-id="cjyclxvm00003fsmh2k5765i4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-markdown使用教程" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/07/20/markdown使用教程/" class="article-date">
@@ -100,7 +309,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/20/markdown使用教程/" data-id="cjyb7ibbb00015omhqy4u9du0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/20/markdown使用教程/" data-id="cjyclxvly0002fsmh17me3178" class="article-share-link">Share</a>
       
       
     </footer>
@@ -149,7 +358,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/18/hello-world/" data-id="cjyb7ibb500005omhh27lpifc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/18/hello-world/" data-id="cjyclxvlw0001fsmhdkvuru3b" class="article-share-link">Share</a>
       
       
     </footer>
@@ -188,6 +397,14 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/07/21/STL-map学习/">STL-map学习</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/20/boost库enable-shared-from-this类学习/">boost库enable_shared_from_this类学习</a>
+          </li>
         
           <li>
             <a href="/2019/07/20/markdown使用教程/">markdown使用教程</a>
