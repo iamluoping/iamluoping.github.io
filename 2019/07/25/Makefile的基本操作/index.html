@@ -5,19 +5,19 @@
   
 
   
-  <title>Hello World | Hexo</title>
+  <title>跟我一起写Makefile | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="makefile中的符号$变量引用# 单行注释$@目标文件$&amp;lt;依赖文件   makefile中的规则makefile会自动根据目标名xxx.o找到依赖文件xxx.c,并且会自动推导出命令：cc -c xxx.c   写法一： objects = main.o a.o b.o \              c.o main:$(objects)     gcc $(objects) -o ma">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2019/07/18/hello-world/index.html">
+<meta property="og:title" content="跟我一起写Makefile">
+<meta property="og:url" content="http://yoursite.com/2019/07/25/Makefile的基本操作/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="makefile中的符号$变量引用# 单行注释$@目标文件$&amp;lt;依赖文件   makefile中的规则makefile会自动根据目标名xxx.o找到依赖文件xxx.c,并且会自动推导出命令：cc -c xxx.c   写法一： objects = main.o a.o b.o \              c.o main:$(objects)     gcc $(objects) -o ma">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-18T12:05:27.064Z">
+<meta property="og:updated_time" content="2019-07-29T12:31:19.903Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="跟我一起写Makefile">
+<meta name="twitter:description" content="makefile中的符号$变量引用# 单行注释$@目标文件$&amp;lt;依赖文件   makefile中的规则makefile会自动根据目标名xxx.o找到依赖文件xxx.c,并且会自动推导出命令：cc -c xxx.c   写法一： objects = main.o a.o b.o \              c.o main:$(objects)     gcc $(objects) -o ma">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -64,10 +64,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Makefile的基本操作" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/07/18/hello-world/" class="article-date">
-  <time datetime="2019-07-18T12:05:27.064Z" itemprop="datePublished">2019-07-18</time>
+    <a href="/2019/07/25/Makefile的基本操作/" class="article-date">
+  <time datetime="2019-07-25T07:13:26.000Z" itemprop="datePublished">2019-07-25</time>
 </a>
     
   </div>
@@ -78,7 +78,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      跟我一起写Makefile
     </h1>
   
 
@@ -86,24 +86,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <h2 id="makefile中的符号"><a href="#makefile中的符号" class="headerlink" title="makefile中的符号"></a>makefile中的符号</h2><p>$变量引用<br># 单行注释<br>$@目标文件<br>$&lt;依赖文件  </p>
+<h2 id="makefile中的规则"><a href="#makefile中的规则" class="headerlink" title="makefile中的规则"></a>makefile中的规则</h2><p><strong><em>makefile会自动根据目标名xxx.o找到依赖文件xxx.c,并且会自动推导出命令：cc -c xxx.c</em></strong>  </p>
+<p>写法一：</p>
+<pre><code>objects = main.o a.o b.o \
+             c.o
+main:$(objects)
+    gcc $(objects) -o main 
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+$(objects):a.c b.c c.c t1.h
+    gcc a.c t1.h -o a.o
+    gcc b.c t1.h -o b.o
+    gcc c.c t1.h -o c.o
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+.PHONY : clean
+clean :
+        rm main $(objects)</code></pre><p>写法二：</p>
+<pre><code>objects = main.o a.o b.o \
+             c.o
+main:$(objects)
+        gcc $(objects) -o main 
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+$(objects):t1.h
 
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+.PHONY : clean
+clean :
+        rm proc $(objects)</code></pre><h2 id="clean的标准写法"><a href="#clean的标准写法" class="headerlink" title="clean的标准写法"></a>clean的标准写法</h2><pre><code>.PHONY:clean           #.PHONY表明clean是一个伪目标,-如果某些文件出现问题，不停，继续执行
+clean:
+    -rm $OBJECT main</code></pre><h2 id="、-、-、-区别"><a href="#、-、-、-区别" class="headerlink" title="=、 :=、 ?=、 +=区别"></a>=、 :=、 ?=、 +=区别</h2><p>= 是最基本的赋值<br>:= 是覆盖之前的值<br>?= 是如果没有被赋值过就赋予等号后面的值<br>+= 是添加等号后面的值  </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/18/hello-world/" data-id="cjyobpk280007kwmhw1pgz3ms" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/25/Makefile的基本操作/" data-id="cjyocfnnw0001z8mhzbkv44v0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -112,15 +127,20 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/07/20/markdown使用教程/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/07/29/工作项目中遇到的错误合集/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          markdown使用教程
+          工作项目中遇到的错误合集
         
       </div>
     </a>
   
+  
+    <a href="/2019/07/21/STL-map/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">STL-map学习</div>
+    </a>
   
 </nav>
 

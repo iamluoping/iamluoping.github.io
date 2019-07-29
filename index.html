@@ -62,10 +62,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-STL-map学习" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-工作项目中使用到的boost" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/07/21/STL-map学习/" class="article-date">
-  <time datetime="2019-07-21T06:24:35.000Z" itemprop="datePublished">2019-07-21</time>
+    <a href="/2019/07/29/工作项目中使用到的boost/" class="article-date">
+  <time datetime="2019-07-29T05:49:33.000Z" itemprop="datePublished">2019-07-29</time>
 </a>
     
   </div>
@@ -76,7 +76,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/21/STL-map学习/">STL-map学习</a>
+      <a class="article-title" href="/2019/07/29/工作项目中使用到的boost/">工作项目中使用到的boost</a>
     </h1>
   
 
@@ -84,9 +84,150 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##map与muiltimap</p>
-<p>###map<br>map中所有元素都会根据元素的键值key自动排序（<strong><em>红黑树</em></strong>），其中的每个元素都是&lt;key, value&gt;的键值对，map中不允许有键值相同的元素，因此map中元素的键值key不能修改。</p>
-<p>###muitimap<br>multimap中允许有键值相同的元素（<strong><em>红河树链表</em></strong>），每个树节点都是一个保存相同key的链表。  </p>
+        <p>boost::gregorian::to_iso_string</p>
+<p>boost::lexical_cast</p>
+<p>boost::format</p>
+<p>boost::dynamic_pointer_cast</p>
+<p>boost::any_cast<char></char></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/29/工作项目中使用到的boost/" data-id="cjyobpk200004kwmh1ftgbx5z" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-工作项目中遇到的错误合集" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/29/工作项目中遇到的错误合集/" class="article-date">
+  <time datetime="2019-07-29T05:29:33.000Z" itemprop="datePublished">2019-07-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/29/工作项目中遇到的错误合集/">工作项目中遇到的错误合集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-broker-client-pool-c-4-connection-error-error-“End-of-file”-isNetError-true-reconnecting-in-3-seconds"><a href="#1-broker-client-pool-c-4-connection-error-error-“End-of-file”-isNetError-true-reconnecting-in-3-seconds" class="headerlink" title="1.[broker-client-pool-c-4] connection error { error: “End of file”, isNetError: true }, reconnecting in 3 seconds"></a>1.[broker-client-pool-c-4] connection error { error: “End of file”, isNetError: true }, reconnecting in 3 seconds</h2><p><img src="/2019/07/29/工作项目中遇到的错误合集/1.png" alt="1"><br>原因：broker和Agent数据传输是否使用ssl加密没统一<br>解决方案：<br>    1. 修改broker连接agent的配置文件xxxstock.lua<br>    <img src="/2019/07/29/工作项目中遇到的错误合集/ssl1.png" alt="2"><br>    2. 修改agent配置文件config.ini<br>    <img src="/2019/07/29/工作项目中遇到的错误合集/ssl1.png" alt="3"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/29/工作项目中遇到的错误合集/" data-id="cjyobpk1y0003kwmh6e19c3vi" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Makefile的基本操作" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/25/Makefile的基本操作/" class="article-date">
+  <time datetime="2019-07-25T07:13:26.000Z" itemprop="datePublished">2019-07-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/25/Makefile的基本操作/">跟我一起写Makefile</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="makefile中的符号"><a href="#makefile中的符号" class="headerlink" title="makefile中的符号"></a>makefile中的符号</h2><p>$变量引用<br># 单行注释<br>$@目标文件<br>$&lt;依赖文件  </p>
+<h2 id="makefile中的规则"><a href="#makefile中的规则" class="headerlink" title="makefile中的规则"></a>makefile中的规则</h2><p><strong><em>makefile会自动根据目标名xxx.o找到依赖文件xxx.c,并且会自动推导出命令：cc -c xxx.c</em></strong>  </p>
+<p>写法一：</p>
+<pre><code>objects = main.o a.o b.o \
+             c.o
+main:$(objects)
+    gcc $(objects) -o main 
+
+$(objects):a.c b.c c.c t1.h
+    gcc a.c t1.h -o a.o
+    gcc b.c t1.h -o b.o
+    gcc c.c t1.h -o c.o
+
+.PHONY : clean
+clean :
+        rm main $(objects)</code></pre><p>写法二：</p>
+<pre><code>objects = main.o a.o b.o \
+             c.o
+main:$(objects)
+        gcc $(objects) -o main 
+
+$(objects):t1.h
+
+.PHONY : clean
+clean :
+        rm proc $(objects)</code></pre><h2 id="clean的标准写法"><a href="#clean的标准写法" class="headerlink" title="clean的标准写法"></a>clean的标准写法</h2><pre><code>.PHONY:clean           #.PHONY表明clean是一个伪目标,-如果某些文件出现问题，不停，继续执行
+clean:
+    -rm $OBJECT main</code></pre><h2 id="、-、-、-区别"><a href="#、-、-、-区别" class="headerlink" title="=、 :=、 ?=、 +=区别"></a>=、 :=、 ?=、 +=区别</h2><p>= 是最基本的赋值<br>:= 是覆盖之前的值<br>?= 是如果没有被赋值过就赋予等号后面的值<br>+= 是添加等号后面的值  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/25/Makefile的基本操作/" data-id="cjyocfnnw0001z8mhzbkv44v0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-STL-map" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/21/STL-map/" class="article-date">
+  <time datetime="2019-07-21T07:00:37.000Z" itemprop="datePublished">2019-07-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/21/STL-map/">STL-map学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="map与muiltimap"><a href="#map与muiltimap" class="headerlink" title="map与muiltimap"></a>map与muiltimap</h2><h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>map中所有元素都会根据元素的键值key自动排序（<strong><em>红黑树</em></strong>），其中的每个元素都是&lt;key, value&gt;的键值对，map中不允许有键值相同的元素，因此map中元素的键值key不能修改。</p>
+<h3 id="muitimap"><a href="#muitimap" class="headerlink" title="muitimap"></a>muitimap</h3><p>multimap中允许有键值相同的元素（<strong><em>红河树链表</em></strong>），每个树节点都是一个保存相同key的链表。  </p>
 <pre><code>#include &lt;iostream&gt;
 #include &lt;map&gt;
 using namespace std;
@@ -126,12 +267,12 @@ int main()
         cout &lt;&lt; i.first &lt;&lt; &quot;  &quot; &lt;&lt; i.second.name &lt;&lt; &quot;  &quot; &lt;&lt; i.second.age &lt;&lt; endl ;
 
     return 0;
-}</code></pre><p>##unordered_map_unordered_multimap<br>内部实现了一个哈希表，因此其元素的排列顺序是杂乱的，无序的</p>
+}</code></pre><h2 id="unordered-map-unordered-multimap"><a href="#unordered-map-unordered-multimap" class="headerlink" title="unordered_map_unordered_multimap"></a>unordered_map_unordered_multimap</h2><p>内部实现了一个哈希表，因此其元素的排列顺序是杂乱的，无序的</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/21/STL-map学习/" data-id="cjyclxvlr0000fsmhidq507oh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/21/STL-map/" data-id="cjyobpk230005kwmhx3c70kzk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -261,7 +402,7 @@ int main()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/20/boost库enable-shared-from-this类学习/" data-id="cjyclxvm00003fsmh2k5765i4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/20/boost库enable-shared-from-this类学习/" data-id="cjyobpk1v0001kwmhsteskrdw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -309,7 +450,7 @@ int main()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/20/markdown使用教程/" data-id="cjyclxvly0002fsmh17me3178" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/20/markdown使用教程/" data-id="cjyobpk1w0002kwmhfa645y70" class="article-share-link">Share</a>
       
       
     </footer>
@@ -358,7 +499,7 @@ int main()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/18/hello-world/" data-id="cjyclxvlw0001fsmhdkvuru3b" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/18/hello-world/" data-id="cjyobpk280007kwmhw1pgz3ms" class="article-share-link">Share</a>
       
       
     </footer>
@@ -399,19 +540,23 @@ int main()
       <ul>
         
           <li>
-            <a href="/2019/07/21/STL-map学习/">STL-map学习</a>
+            <a href="/2019/07/29/工作项目中使用到的boost/">工作项目中使用到的boost</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/29/工作项目中遇到的错误合集/">工作项目中遇到的错误合集</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Makefile的基本操作/">跟我一起写Makefile</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/21/STL-map/">STL-map学习</a>
           </li>
         
           <li>
             <a href="/2019/07/20/boost库enable-shared-from-this类学习/">boost库enable_shared_from_this类学习</a>
-          </li>
-        
-          <li>
-            <a href="/2019/07/20/markdown使用教程/">markdown使用教程</a>
-          </li>
-        
-          <li>
-            <a href="/2019/07/18/hello-world/">Hello World</a>
           </li>
         
       </ul>
