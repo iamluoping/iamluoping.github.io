@@ -7,17 +7,17 @@
   
   <title>工作项目中使用到的boost | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="boost::gregorian::to_iso_string boost::lexical_cast boost::format boost::dynamic_pointer_cast boost::any_cast">
+  <meta name="description" content="boost::gregorian::to_iso_stringboost::lexical_castlexical_cast 是依赖于字符串流 std::stringstream 的，其原理也是相当的简单： 把源类型 (Source) 读入到字符流中，再写到目标类型 (Target) 中。但这里同时也带来了一些限制：   - 输入数据 (arg) 必须能够 “完整” 地转换，否则就会抛出 bad_">
 <meta property="og:type" content="article">
 <meta property="og:title" content="工作项目中使用到的boost">
 <meta property="og:url" content="http://yoursite.com/2019/07/29/工作项目中使用到的boost/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="boost::gregorian::to_iso_string boost::lexical_cast boost::format boost::dynamic_pointer_cast boost::any_cast">
+<meta property="og:description" content="boost::gregorian::to_iso_stringboost::lexical_castlexical_cast 是依赖于字符串流 std::stringstream 的，其原理也是相当的简单： 把源类型 (Source) 读入到字符流中，再写到目标类型 (Target) 中。但这里同时也带来了一些限制：   - 输入数据 (arg) 必须能够 “完整” 地转换，否则就会抛出 bad_">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-29T12:01:57.365Z">
+<meta property="og:updated_time" content="2019-07-30T12:47:38.769Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="工作项目中使用到的boost">
-<meta name="twitter:description" content="boost::gregorian::to_iso_string boost::lexical_cast boost::format boost::dynamic_pointer_cast boost::any_cast">
+<meta name="twitter:description" content="boost::gregorian::to_iso_stringboost::lexical_castlexical_cast 是依赖于字符串流 std::stringstream 的，其原理也是相当的简单： 把源类型 (Source) 读入到字符流中，再写到目标类型 (Target) 中。但这里同时也带来了一些限制：   - 输入数据 (arg) 必须能够 “完整” 地转换，否则就会抛出 bad_">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -86,16 +86,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>boost::gregorian::to_iso_string</p>
-<p>boost::lexical_cast</p>
-<p>boost::format</p>
-<p>boost::dynamic_pointer_cast</p>
-<p>boost::any_cast<char></char></p>
+        <h2 id="boost-gregorian-to-iso-string"><a href="#boost-gregorian-to-iso-string" class="headerlink" title="boost::gregorian::to_iso_string"></a>boost::gregorian::to_iso_string</h2><h2 id="boost-lexical-cast"><a href="#boost-lexical-cast" class="headerlink" title="boost::lexical_cast"></a>boost::lexical_cast</h2><pre><code>lexical_cast 是依赖于字符串流 std::stringstream 的，其原理也是相当的简单：
+把源类型 (Source) 读入到字符流中，再写到目标类型 (Target) 中。但这里同时也带来了一些限制： 
+ - 输入数据 (arg) 必须能够 “完整” 地转换，否则就会抛出 bad_lexical_cast 异常</code></pre><h2 id="boost-format"><a href="#boost-format" class="headerlink" title="boost::format"></a>boost::format</h2><pre><code>格式化字符串  
+boost::format fmt = boost::format(&quot;&lt;%s&gt; %s in the lower case&quot;) % text % (is_all_lower? &quot;is&quot;: &quot;is not&quot;);
+string output = fmt.str();</code></pre><h2 id="boost-dynamic-pointer-cast"><a href="#boost-dynamic-pointer-cast" class="headerlink" title="boost::dynamic_pointer_cast"></a>boost::dynamic_pointer_cast</h2><pre><code>裸指针使用dynamic_cast或者static_cast转换， 智能指针使用dynamic_pointer_cast和static_pointer_cast转化
 
+dynamic_cast和static_cast的区别：
+dynamic_cast在进行下行转换的时候（即基类到派生类）具有类型检查功能，而static_cast没有</code></pre><h2 id="boost-any-cast"><a href="#boost-any-cast" class="headerlink" title="boost::any_cast"></a>boost::any_cast<char></char></h2><pre><code>将char类型的变量转换为any类型</code></pre><h2 id="boost-split-和-boost-is-any-of"><a href="#boost-split-和-boost-is-any-of" class="headerlink" title="boost::split 和 boost::is_any_of"></a>boost::split 和 boost::is_any_of</h2><pre><code>切割字符串
+string test = &quot;i am a student,you are a teacher!&quot;;    
+vector&lt;string&gt; vec;    
+boost::split(vec, test,boost::is_any_of(&quot;,&quot;));
+boost::split(vec, test,boost::is_any_of(&quot; ,&quot;));</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/29/工作项目中使用到的boost/" data-id="cjyobpk200004kwmh1ftgbx5z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/29/工作项目中使用到的boost/" data-id="cjyr6clcf0008qsmhc0fsk3h7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -103,6 +109,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2019/07/30/c-与python单例模式实现/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          c++与python单例模式实现
+        
+      </div>
+    </a>
   
   
     <a href="/2019/07/29/工作项目中遇到的错误合集/" id="article-nav-older" class="article-nav-link-wrap">
@@ -144,6 +159,14 @@
       <ul>
         
           <li>
+            <a href="/2019/07/30/c-与python异常捕获/">c++与python异常捕获</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/30/c-与python单例模式实现/">c++与python单例模式实现</a>
+          </li>
+        
+          <li>
             <a href="/2019/07/29/工作项目中使用到的boost/">工作项目中使用到的boost</a>
           </li>
         
@@ -153,14 +176,6 @@
         
           <li>
             <a href="/2019/07/25/Makefile的基本操作/">跟我一起写Makefile</a>
-          </li>
-        
-          <li>
-            <a href="/2019/07/21/STL-map/">STL-map学习</a>
-          </li>
-        
-          <li>
-            <a href="/2019/07/20/boost库enable-shared-from-this类学习/">boost库enable_shared_from_this类学习</a>
           </li>
         
       </ul>

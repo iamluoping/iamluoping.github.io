@@ -5,24 +5,19 @@
   
 
   
-  <title>工作项目中遇到的错误合集 | Hexo</title>
+  <title>c++与python单例模式实现 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. [broker-client-pool-c-4] connection error { error: “End of file”, isNetError: true }, reconnecting in 3 seconds原因：broker和Agent数据传输是否使用ssl加密没统一解决方案：    1. 修改broker连接agent的配置文件xxxstock.lua        2.">
+  <meta name="description" content="在项目中有些类只需要实例化一个对象，实现数据共享，如音乐播放器永远只能播放一首歌，如回收站，那么设计可以通过单例模式实现 c++中的单例//单例模式是为了实现数据共享，只能生成一个对象 #include &amp;lt;iostream&amp;gt;  using namespace std;  class SingleTon { public:     static SingleTon * getSingle">
 <meta property="og:type" content="article">
-<meta property="og:title" content="工作项目中遇到的错误合集">
-<meta property="og:url" content="http://yoursite.com/2019/07/29/工作项目中遇到的错误合集/index.html">
+<meta property="og:title" content="c++与python单例模式实现">
+<meta property="og:url" content="http://yoursite.com/2019/07/30/c-与python单例模式实现/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1. [broker-client-pool-c-4] connection error { error: “End of file”, isNetError: true }, reconnecting in 3 seconds原因：broker和Agent数据传输是否使用ssl加密没统一解决方案：    1. 修改broker连接agent的配置文件xxxstock.lua        2.">
+<meta property="og:description" content="在项目中有些类只需要实例化一个对象，实现数据共享，如音乐播放器永远只能播放一首歌，如回收站，那么设计可以通过单例模式实现 c++中的单例//单例模式是为了实现数据共享，只能生成一个对象 #include &amp;lt;iostream&amp;gt;  using namespace std;  class SingleTon { public:     static SingleTon * getSingle">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2019/07/29/工作项目中遇到的错误合集/1.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/29/工作项目中遇到的错误合集/ssl1.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/29/工作项目中遇到的错误合集/ssl1.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/29/工作项目中遇到的错误合集/2.png">
-<meta property="og:updated_time" content="2019-07-30T12:38:10.634Z">
+<meta property="og:updated_time" content="2019-07-30T14:40:48.289Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="工作项目中遇到的错误合集">
-<meta name="twitter:description" content="1. [broker-client-pool-c-4] connection error { error: “End of file”, isNetError: true }, reconnecting in 3 seconds原因：broker和Agent数据传输是否使用ssl加密没统一解决方案：    1. 修改broker连接agent的配置文件xxxstock.lua        2.">
-<meta name="twitter:image" content="http://yoursite.com/2019/07/29/工作项目中遇到的错误合集/1.png">
+<meta name="twitter:title" content="c++与python单例模式实现">
+<meta name="twitter:description" content="在项目中有些类只需要实例化一个对象，实现数据共享，如音乐播放器永远只能播放一首歌，如回收站，那么设计可以通过单例模式实现 c++中的单例//单例模式是为了实现数据共享，只能生成一个对象 #include &amp;lt;iostream&amp;gt;  using namespace std;  class SingleTon { public:     static SingleTon * getSingle">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -69,10 +64,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-工作项目中遇到的错误合集" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-c-与python单例模式实现" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/07/29/工作项目中遇到的错误合集/" class="article-date">
-  <time datetime="2019-07-29T05:29:33.000Z" itemprop="datePublished">2019-07-29</time>
+    <a href="/2019/07/30/c-与python单例模式实现/" class="article-date">
+  <time datetime="2019-07-30T14:25:56.000Z" itemprop="datePublished">2019-07-30</time>
 </a>
     
   </div>
@@ -83,7 +78,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      工作项目中遇到的错误合集
+      c++与python单例模式实现
     </h1>
   
 
@@ -91,13 +86,68 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-broker-client-pool-c-4-connection-error-error-“End-of-file”-isNetError-true-reconnecting-in-3-seconds"><a href="#1-broker-client-pool-c-4-connection-error-error-“End-of-file”-isNetError-true-reconnecting-in-3-seconds" class="headerlink" title="1. [broker-client-pool-c-4] connection error { error: “End of file”, isNetError: true }, reconnecting in 3 seconds"></a>1. [broker-client-pool-c-4] connection error { error: “End of file”, isNetError: true }, reconnecting in 3 seconds</h2><p><img src="/2019/07/29/工作项目中遇到的错误合集/1.png" alt="1"><br>原因：broker和Agent数据传输是否使用ssl加密没统一<br>解决方案：<br>    1. 修改broker连接agent的配置文件xxxstock.lua<br>    <img src="/2019/07/29/工作项目中遇到的错误合集/ssl1.png" alt="2"><br>    2. 修改agent配置文件config.ini<br>    <img src="/2019/07/29/工作项目中遇到的错误合集/ssl1.png" alt="3"></p>
-<h2 id="2-broker-client-pool-c-4-recv-disp-seq-2-error-ErrorID-200003-ErrorMsg-“超时”-resp"><a href="#2-broker-client-pool-c-4-recv-disp-seq-2-error-ErrorID-200003-ErrorMsg-“超时”-resp" class="headerlink" title="2. [broker-client-pool-c-4] [recv] disp_seq: 2, error: { ErrorID: 200003, ErrorMsg: “超时” }, resp: {}"></a>2. [broker-client-pool-c-4] [recv] disp_seq: 2, error: { ErrorID: 200003, ErrorMsg: “超时” }, resp: {}</h2><p><img src="/2019/07/29/工作项目中遇到的错误合集/2.png" alt="2"><br>原因:没有连接网络</p>
+        <p>在项目中有些类只需要实例化一个对象，实现数据共享，如音乐播放器永远只能播放一首歌，如回收站，那么设计可以通过单例模式实现</p>
+<h2 id="c-中的单例"><a href="#c-中的单例" class="headerlink" title="c++中的单例"></a>c++中的单例</h2><pre><code>//单例模式是为了实现数据共享，只能生成一个对象
+#include &lt;iostream&gt;
 
+using namespace std;
+
+class SingleTon
+{
+public:
+    static SingleTon * getSingleTon()
+    {
+        if(str == nullptr)
+            str = new SingleTon;
+        return  str;
+    }
+    static void releaseSingleTon()
+    {
+        if(str != nullptr)
+            delete[] str;
+        str = nullptr;
+    }
+private:
+    static SingleTon *str;
+    SingleTon(){}
+   ~SingleTon(){}
+    SingleTon(const SingleTon &amp; s){}
+    SingleTon &amp; operator=(const SingleTon &amp; s){}
+};
+SingleTon * SingleTon::str = nullptr;
+
+int main()
+{
+    SingleTon *p = SingleTon::getSingleTon();
+    SingleTon *p1 = SingleTon::getSingleTon();
+    SingleTon *p2 = SingleTon::getSingleTon();
+
+    SingleTon::releaseSingleTon();
+
+    return 0;
+}</code></pre><h2 id="python中的单例"><a href="#python中的单例" class="headerlink" title="python中的单例"></a>python中的单例</h2><pre><code>class SingleTon(object):
+
+instance = None
+flag = False
+
+def __new__(cls, *args, **kwargs):
+    if cls.instance is None:
+        cls.instance = super().__new__(cls)
+    return cls.instance
+
+def __init__(self):
+    if SingleTon.flag:
+        return
+    print(&quot;初始化动作&quot;)
+    SingleTon.flag = True
+
+t1 = SingleTon()
+t2 = SingleTon()
+print(id(t1), id(t2))</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/29/工作项目中遇到的错误合集/" data-id="cjyr6clc40005qsmhqcqc45mh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/30/c-与python单例模式实现/" data-id="cjyr6clc10002qsmh5bm23pgn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -106,19 +156,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/07/29/工作项目中使用到的boost/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/07/30/c-与python异常捕获/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          工作项目中使用到的boost
+          c++与python异常捕获
         
       </div>
     </a>
   
   
-    <a href="/2019/07/25/Makefile的基本操作/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/07/29/工作项目中使用到的boost/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">跟我一起写Makefile</div>
+      <div class="article-nav-title">工作项目中使用到的boost</div>
     </a>
   
 </nav>

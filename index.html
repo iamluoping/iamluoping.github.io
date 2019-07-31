@@ -62,6 +62,155 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-c-与python异常捕获" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/30/c-与python异常捕获/" class="article-date">
+  <time datetime="2019-07-30T14:26:34.000Z" itemprop="datePublished">2019-07-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/30/c-与python异常捕获/">c++与python异常捕获</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="c-中的异常"><a href="#c-中的异常" class="headerlink" title="c++中的异常"></a>c++中的异常</h2><pre><code>try
+{
+    cint &gt;&gt; num;
+    result = 100 / num;
+
+    throw 
+}
+catch()
+{
+
+}</code></pre><h2 id="python中的异常"><a href="#python中的异常" class="headerlink" title="python中的异常"></a>python中的异常</h2><pre><code>try:
+    pass
+    raise 
+except ValueError:
+    pass
+except EXCEPTION as result:
+    pass
+else:
+    #没有出现异常执行
+finally:
+    #无论如何都会执行</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/30/c-与python异常捕获/" data-id="cjyr6clc20003qsmhauv3qgc3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-c-与python单例模式实现" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/30/c-与python单例模式实现/" class="article-date">
+  <time datetime="2019-07-30T14:25:56.000Z" itemprop="datePublished">2019-07-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/30/c-与python单例模式实现/">c++与python单例模式实现</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在项目中有些类只需要实例化一个对象，实现数据共享，如音乐播放器永远只能播放一首歌，如回收站，那么设计可以通过单例模式实现</p>
+<h2 id="c-中的单例"><a href="#c-中的单例" class="headerlink" title="c++中的单例"></a>c++中的单例</h2><pre><code>//单例模式是为了实现数据共享，只能生成一个对象
+#include &lt;iostream&gt;
+
+using namespace std;
+
+class SingleTon
+{
+public:
+    static SingleTon * getSingleTon()
+    {
+        if(str == nullptr)
+            str = new SingleTon;
+        return  str;
+    }
+    static void releaseSingleTon()
+    {
+        if(str != nullptr)
+            delete[] str;
+        str = nullptr;
+    }
+private:
+    static SingleTon *str;
+    SingleTon(){}
+   ~SingleTon(){}
+    SingleTon(const SingleTon &amp; s){}
+    SingleTon &amp; operator=(const SingleTon &amp; s){}
+};
+SingleTon * SingleTon::str = nullptr;
+
+int main()
+{
+    SingleTon *p = SingleTon::getSingleTon();
+    SingleTon *p1 = SingleTon::getSingleTon();
+    SingleTon *p2 = SingleTon::getSingleTon();
+
+    SingleTon::releaseSingleTon();
+
+    return 0;
+}</code></pre><h2 id="python中的单例"><a href="#python中的单例" class="headerlink" title="python中的单例"></a>python中的单例</h2><pre><code>class SingleTon(object):
+
+instance = None
+flag = False
+
+def __new__(cls, *args, **kwargs):
+    if cls.instance is None:
+        cls.instance = super().__new__(cls)
+    return cls.instance
+
+def __init__(self):
+    if SingleTon.flag:
+        return
+    print(&quot;初始化动作&quot;)
+    SingleTon.flag = True
+
+t1 = SingleTon()
+t2 = SingleTon()
+print(id(t1), id(t2))</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/30/c-与python单例模式实现/" data-id="cjyr6clc10002qsmh5bm23pgn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-工作项目中使用到的boost" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/07/29/工作项目中使用到的boost/" class="article-date">
@@ -84,16 +233,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>boost::gregorian::to_iso_string</p>
-<p>boost::lexical_cast</p>
-<p>boost::format</p>
-<p>boost::dynamic_pointer_cast</p>
-<p>boost::any_cast<char></char></p>
+        <h2 id="boost-gregorian-to-iso-string"><a href="#boost-gregorian-to-iso-string" class="headerlink" title="boost::gregorian::to_iso_string"></a>boost::gregorian::to_iso_string</h2><h2 id="boost-lexical-cast"><a href="#boost-lexical-cast" class="headerlink" title="boost::lexical_cast"></a>boost::lexical_cast</h2><pre><code>lexical_cast 是依赖于字符串流 std::stringstream 的，其原理也是相当的简单：
+把源类型 (Source) 读入到字符流中，再写到目标类型 (Target) 中。但这里同时也带来了一些限制： 
+ - 输入数据 (arg) 必须能够 “完整” 地转换，否则就会抛出 bad_lexical_cast 异常</code></pre><h2 id="boost-format"><a href="#boost-format" class="headerlink" title="boost::format"></a>boost::format</h2><pre><code>格式化字符串  
+boost::format fmt = boost::format(&quot;&lt;%s&gt; %s in the lower case&quot;) % text % (is_all_lower? &quot;is&quot;: &quot;is not&quot;);
+string output = fmt.str();</code></pre><h2 id="boost-dynamic-pointer-cast"><a href="#boost-dynamic-pointer-cast" class="headerlink" title="boost::dynamic_pointer_cast"></a>boost::dynamic_pointer_cast</h2><pre><code>裸指针使用dynamic_cast或者static_cast转换， 智能指针使用dynamic_pointer_cast和static_pointer_cast转化
 
+dynamic_cast和static_cast的区别：
+dynamic_cast在进行下行转换的时候（即基类到派生类）具有类型检查功能，而static_cast没有</code></pre><h2 id="boost-any-cast"><a href="#boost-any-cast" class="headerlink" title="boost::any_cast"></a>boost::any_cast<char></char></h2><pre><code>将char类型的变量转换为any类型</code></pre><h2 id="boost-split-和-boost-is-any-of"><a href="#boost-split-和-boost-is-any-of" class="headerlink" title="boost::split 和 boost::is_any_of"></a>boost::split 和 boost::is_any_of</h2><pre><code>切割字符串
+string test = &quot;i am a student,you are a teacher!&quot;;    
+vector&lt;string&gt; vec;    
+boost::split(vec, test,boost::is_any_of(&quot;,&quot;));
+boost::split(vec, test,boost::is_any_of(&quot; ,&quot;));</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/29/工作项目中使用到的boost/" data-id="cjyobpk200004kwmh1ftgbx5z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/29/工作项目中使用到的boost/" data-id="cjyr6clcf0008qsmhc0fsk3h7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -125,12 +280,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-broker-client-pool-c-4-connection-error-error-“End-of-file”-isNetError-true-reconnecting-in-3-seconds"><a href="#1-broker-client-pool-c-4-connection-error-error-“End-of-file”-isNetError-true-reconnecting-in-3-seconds" class="headerlink" title="1.[broker-client-pool-c-4] connection error { error: “End of file”, isNetError: true }, reconnecting in 3 seconds"></a>1.[broker-client-pool-c-4] connection error { error: “End of file”, isNetError: true }, reconnecting in 3 seconds</h2><p><img src="/2019/07/29/工作项目中遇到的错误合集/1.png" alt="1"><br>原因：broker和Agent数据传输是否使用ssl加密没统一<br>解决方案：<br>    1. 修改broker连接agent的配置文件xxxstock.lua<br>    <img src="/2019/07/29/工作项目中遇到的错误合集/ssl1.png" alt="2"><br>    2. 修改agent配置文件config.ini<br>    <img src="/2019/07/29/工作项目中遇到的错误合集/ssl1.png" alt="3"></p>
+        <h2 id="1-broker-client-pool-c-4-connection-error-error-“End-of-file”-isNetError-true-reconnecting-in-3-seconds"><a href="#1-broker-client-pool-c-4-connection-error-error-“End-of-file”-isNetError-true-reconnecting-in-3-seconds" class="headerlink" title="1. [broker-client-pool-c-4] connection error { error: “End of file”, isNetError: true }, reconnecting in 3 seconds"></a>1. [broker-client-pool-c-4] connection error { error: “End of file”, isNetError: true }, reconnecting in 3 seconds</h2><p><img src="/2019/07/29/工作项目中遇到的错误合集/1.png" alt="1"><br>原因：broker和Agent数据传输是否使用ssl加密没统一<br>解决方案：<br>    1. 修改broker连接agent的配置文件xxxstock.lua<br>    <img src="/2019/07/29/工作项目中遇到的错误合集/ssl1.png" alt="2"><br>    2. 修改agent配置文件config.ini<br>    <img src="/2019/07/29/工作项目中遇到的错误合集/ssl1.png" alt="3"></p>
+<h2 id="2-broker-client-pool-c-4-recv-disp-seq-2-error-ErrorID-200003-ErrorMsg-“超时”-resp"><a href="#2-broker-client-pool-c-4-recv-disp-seq-2-error-ErrorID-200003-ErrorMsg-“超时”-resp" class="headerlink" title="2. [broker-client-pool-c-4] [recv] disp_seq: 2, error: { ErrorID: 200003, ErrorMsg: “超时” }, resp: {}"></a>2. [broker-client-pool-c-4] [recv] disp_seq: 2, error: { ErrorID: 200003, ErrorMsg: “超时” }, resp: {}</h2><p><img src="/2019/07/29/工作项目中遇到的错误合集/2.png" alt="2"><br>原因:没有连接网络</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/29/工作项目中遇到的错误合集/" data-id="cjyobpk1y0003kwmh6e19c3vi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/29/工作项目中遇到的错误合集/" data-id="cjyr6clc40005qsmhqcqc45mh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -194,7 +350,7 @@ clean:
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/25/Makefile的基本操作/" data-id="cjyocfnnw0001z8mhzbkv44v0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/25/Makefile的基本操作/" data-id="cjyr6clbv0000qsmhim3ztx0m" class="article-share-link">Share</a>
       
       
     </footer>
@@ -272,7 +428,7 @@ int main()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/21/STL-map/" data-id="cjyobpk230005kwmhx3c70kzk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/21/STL-map/" data-id="cjyr6clbz0001qsmhm66hsjph" class="article-share-link">Share</a>
       
       
     </footer>
@@ -402,7 +558,7 @@ int main()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/20/boost库enable-shared-from-this类学习/" data-id="cjyobpk1v0001kwmhsteskrdw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/20/boost库enable-shared-from-this类学习/" data-id="cjyr6clc30004qsmhoypp63mi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -450,7 +606,7 @@ int main()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/20/markdown使用教程/" data-id="cjyobpk1w0002kwmhfa645y70" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/20/markdown使用教程/" data-id="cjyr6clc80006qsmhamwiwds8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -499,7 +655,7 @@ int main()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/18/hello-world/" data-id="cjyobpk280007kwmhw1pgz3ms" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/18/hello-world/" data-id="cjyr6clcb0007qsmhtqvppwjn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -540,6 +696,14 @@ int main()
       <ul>
         
           <li>
+            <a href="/2019/07/30/c-与python异常捕获/">c++与python异常捕获</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/30/c-与python单例模式实现/">c++与python单例模式实现</a>
+          </li>
+        
+          <li>
             <a href="/2019/07/29/工作项目中使用到的boost/">工作项目中使用到的boost</a>
           </li>
         
@@ -549,14 +713,6 @@ int main()
         
           <li>
             <a href="/2019/07/25/Makefile的基本操作/">跟我一起写Makefile</a>
-          </li>
-        
-          <li>
-            <a href="/2019/07/21/STL-map/">STL-map学习</a>
-          </li>
-        
-          <li>
-            <a href="/2019/07/20/boost库enable-shared-from-this类学习/">boost库enable_shared_from_this类学习</a>
           </li>
         
       </ul>
